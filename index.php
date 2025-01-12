@@ -1,3 +1,26 @@
+<?php
+
+include_once('./app/database/connect.php');
+
+if (isset($_POST["submitButton"])) {
+  $username = $_POST["username"];
+  var_dump($username);
+  $body = $_POST["body"];
+  var_dump($body);
+}
+
+$comment_array = array();
+
+//コメントデータをテーブルから取得してくる
+$sql = 'SELECT * FROM comment';
+$stmt = $pdo->prepare($sql);
+$comment_array = $stmt->execute();
+
+$comment_array = $stmt;
+var_dump($comment_array);
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -31,14 +54,14 @@
           </div>
         </article>
       </section>
-      <form class='formWrapper'>
+      <form class='formWrapper' method='POST'>
         <div>
-          <input type="submit" value="書き込む">
+          <input type="submit" value="書き込む" name="submitButton">
           <label>名前:</label>
-          <input type="text">
+          <input type="text" name='username'>
         </div>
         <div>
-          <textarea class="commentTextArea"></textarea>
+          <textarea class="commentTextArea" name="body"></textarea>
         </div>
       </form>
     </div>
