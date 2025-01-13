@@ -70,3 +70,24 @@ section .comment {
 .errorMessage {
   color: red;
 }
+
+.newThreadWrapper {
+  background-color: white;
+  padding: 10px;
+  max-width: 1300px;
+  margin: 0 auto;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.newChildThreadWrapper {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.newChildThreadWrapper button a {
+  width: 150px;
+  color: azure;
+  text-decoration: none;
+}

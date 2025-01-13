@@ -7,4 +7,4 @@
         <div>
           <textarea class="commentTextArea" name="body"></textarea>
         </div>
-      </form>
+</form>
