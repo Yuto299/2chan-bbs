@@ -15,5 +15,21 @@ include_once('../database/connect.php');
 <body>
   <?php include('../../app/parts/header.php'); ?>
   <?php include('../parts/validation.php'); ?>
+
+  <div style='padding-left: 36px; color: blue;'>
+    <h2 style='margin-top: 20px; margin-bottom: 0;'>新規スレッド立ち場状情</h2>
+  </div>
+  <form method='POST' class='formWrapper'>
+    <div>
+      <label>スレッド名</label>
+      <input type="text" name='title'>
+      <label>名前</label>
+      <input type="text" name='username'>
+    </div>
+    <div>
+      <textarea name="body" class='commentTextArea'></textarea>
+    </div>
+    <input type="submit" value='立ち上げ' name='threadSubmitButton'>
+  </form>
 </body>
 </html>
