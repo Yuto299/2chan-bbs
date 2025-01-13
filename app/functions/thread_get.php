@@ -1,11 +1,11 @@
 <?php
-  $comment_array = array();
+  $thread_array = array();
 
   //コメントデータをテーブルから取得してくる
-  $sql = 'SELECT * FROM comment';
+  $sql = 'SELECT * FROM thread';
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
 
-  $comment_array = $stmt;
+  $thread_array = $stmt;
   // var_dump($comment_array);
 ?>

@@ -88,6 +88,6 @@ section .comment {
 
 .newChildThreadWrapper button a {
   width: 150px;
-  color: azure;
+  color: black;
   text-decoration: none;
 }
