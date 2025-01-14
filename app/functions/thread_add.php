@@ -29,26 +29,34 @@ if (isset($_POST['threadSubmitButton'])) {
   if (empty($error_message)) {
     $post_date = date('Y-m-d H:i:s');
 
-    //スレッドを追加
-    $sql = 'INSERT INTO `thread` (`title`) VALUES (:title);';
-    $stmt = $pdo->prepare($sql);
+    //トランザクション
+    $pdo->beginTransaction();
 
-    $stmt->bindParam("title", $escaped['title'], PDO::PARAM_STR);
-    $stmt->execute();
+    try {
+      //スレッドを追加
+      $sql = 'INSERT INTO `thread` (`title`) VALUES (:title);';
+      $stmt = $pdo->prepare($sql);
 
-    //コメントも追加
-    $sql = 'INSERT INTO comment (username, body, post_date, thread_id) VALUES (:username, :body, :post_date, (SELECT id FROM thread WHERE title = :title))';
-    $stmt = $pdo->prepare($sql);
+      $stmt->bindParam("title", $escaped['title'], PDO::PARAM_STR);
+      $stmt->execute();
 
-    //値をセットする
-    $stmt->bindParam(':username', $escaped['username'], PDO::PARAM_STR);
-    $stmt->bindParam(':body', $escaped['body'], PDO::PARAM_STR);
-    $stmt->bindParam(':post_date', $post_date, PDO::PARAM_STR);
-    $stmt->bindParam(':title', $escaped['title'], PDO::PARAM_STR);
+      //コメントも追加
+      $sql = 'INSERT INTO comment (username, body, post_date, thread_id) VALUES (:username, :body, :post_date, (SELECT id FROM thread WHERE title = :title))';
+      $stmt = $pdo->prepare($sql);
 
-    $stmt->execute();
+      //値をセットする
+      $stmt->bindParam(':username', $escaped['username'], PDO::PARAM_STR);
+      $stmt->bindParam(':body', $escaped['body'], PDO::PARAM_STR);
+      $stmt->bindParam(':post_date', $post_date, PDO::PARAM_STR);
+      $stmt->bindParam(':title', $escaped['title'], PDO::PARAM_STR);
+
+      $stmt->execute();
+
+      $pdo->commit();
+    } catch (Exception $error) {
+      $pdo->rollBack();
+    }
   }
-
   //掲示板ページに遷移
   header('Location: http://localhost:8080/2chan-bbs');
 }
