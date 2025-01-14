@@ -1,5 +1,10 @@
+<?php
+include('./app/functions/comment_get.php');
+?>
+
 <section>
   <?php foreach($comment_array as $comment) :?>
+    <?php if ($thread['id'] == $comment['thread_id']): ?>
     <article>
       <div class="wrapper">
         <div class="nameArea">
@@ -10,5 +15,6 @@
             <p class='comment'><?php echo $comment['body']; ?></p>
       </div>
     </article>
+    <?php endif; ?>
   <?php endforeach; ?>
 </section>

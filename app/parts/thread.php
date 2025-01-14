@@ -2,7 +2,6 @@
 include_once('./app/database/connect.php');
 $pdo->exec("SET NAMES utf8mb4");
 include('./app/functions/comment_add.php');
-include('./app/functions/comment_get.php');
 include('./app/functions/thread_get.php');
 ?>
 

@@ -1,6 +1,7 @@
 <?php
 
 include_once('../database/connect.php');
+include_once('../../app/functions/thread_add.php');
 
 ?>
 
@@ -17,7 +18,7 @@ include_once('../database/connect.php');
   <?php include('../parts/validation.php'); ?>
 
   <div style='padding-left: 36px; color: blue;'>
-    <h2 style='margin-top: 20px; margin-bottom: 0;'>新規スレッド立ち場状情</h2>
+    <h2 style='margin-top: 20px; margin-bottom: 0;'>新規スレッド立ち場</h2>
   </div>
   <form method='POST' class='formWrapper'>
     <div>
